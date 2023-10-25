@@ -17,11 +17,20 @@ const initTiles = [...Array(10).keys()].map(
 // This one has an implicit return
 export const Rgl = () => {
   const ResponsiveGridLayout = useMemo(() => WidthProvider(RGL), [])
-  const [tiles, setTiles] = useState(initTiles)
+  const [tiles, setTiles] = useState(
+    JSON.parse(localStorage.getItem('layout')) ?? (initTiles as Layout[]),
+  )
 
   return (
     <div>
-      <button onClick={() => setTiles(initTiles)}>Reset</button>
+      <button
+        onClick={() => {
+          localStorage.removeItem('layout')
+          setTiles(initTiles)
+        }}
+      >
+        Reset
+      </button>
       <button
         style={{ marginLeft: '1em' }}
         onClick={() => {
@@ -42,6 +51,7 @@ export const Rgl = () => {
         isDraggable
         isBounded
         onLayoutChange={(l) => {
+          localStorage.setItem('layout', JSON.stringify(l))
           setTiles(l)
         }}
         layout={tiles}
@@ -51,7 +61,7 @@ export const Rgl = () => {
       >
         {tiles.map((tile, i) => (
           <div className="dashboard-item" key={i} data-grid={tile}>
-            Dashboard ITEM {i}
+            Dashboard ITEM {i + 1}
           </div>
         ))}
       </ResponsiveGridLayout>
