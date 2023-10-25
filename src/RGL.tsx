@@ -54,7 +54,6 @@ export const Rgl = () => {
           localStorage.setItem('layout', JSON.stringify(l))
           setTiles(l)
         }}
-        layout={tiles}
         autoSize={true}
         rowHeight={1}
         margin={[16, 16]}
