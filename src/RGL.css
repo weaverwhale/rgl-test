@@ -1,3 +1,9 @@
 .dashboard-item {
-  background: orange;
+  background: #0a365b;
+  color: white;
+}
+
+.react-resizable-handle:after {
+  border-bottom-color: #e9fe66 !important;
+  border-right-color: #e9fe66 !important;
 }
