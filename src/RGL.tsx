@@ -25,6 +25,15 @@ export const Rgl = () => {
     <div>
       <button
         onClick={() => {
+          setTiles(tiles.slice(0, tiles.length - 1))
+          localStorage.setItem('layout', JSON.stringify(tiles))
+        }}
+      >
+        Remove Tile
+      </button>
+      <button
+        style={{ marginLeft: '1em' }}
+        onClick={() => {
           localStorage.removeItem('layout')
           setTiles(initTiles)
         }}
